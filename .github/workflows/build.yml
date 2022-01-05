@@ -31,8 +31,8 @@ jobs:
           CIBW_ARCHS: native
           CIBW_BUILD: cp38-*
           CIBW_BUILD_VERBOSITY: 0
-          CIBW_BEFORE_BUILD_MACOS: brew install libxml2 zlib eigen; bash ./openbabel_install.sh
-          CIBW_BEFORE_BUILD_LINUX: yum install -y libxml2-devel zlib-devel eigen3-devel; bash ./openbabel_install.sh
+          CIBW_BEFORE_BUILD_MACOS: brew install libxml2 zlib eigen && bash ./openbabel_install.sh
+          CIBW_BEFORE_BUILD_LINUX: yum install -y libxml2-devel zlib-devel eigen3-devel && bash ./openbabel_install.sh
 
       - run: ls -l wheelhouse
 
