@@ -55,7 +55,7 @@ def locate_ob():
         print('Open Babel location automatically determined by pkg-config:')
     except Exception as e:
         print('Warning: %s.\nGuessing Open Babel location:' % e)
-        include_dirs = '/usr/local/Cellar/open-babel/3.1.1_1.reinstall/include/openbabel3/openbabel'
+        include_dirs = '/usr/local/Cellar/open-babel/3.1.1_1.reinstall/include/openbabel3'
         library_dirs = '/usr/local/Cellar/open-babel/3.1.1_1.reinstall/lib'
     return include_dirs, library_dirs
 
