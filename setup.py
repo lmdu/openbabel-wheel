@@ -44,23 +44,19 @@ def locate_ob():
     try:
         # Warn if the (major, minor) version of the installed OB doesn't match these python bindings
         py_ver = StrictVersion(find_version())
-        print('yes1')
         py_major_ver, py_minor_ver = py_ver.version[:2]
-        print('yes2')
         pcfile = 'openbabel-{}'.format(py_major_ver)
         ob_ver = StrictVersion(pkgconfig(pcfile, '--modversion'))
-        pirnt('yes3')
         if not ob_ver.version[:2] == py_ver.version[:2]:
             print('Warning: Open Babel {}.{}.x is required. Your version ({}) may not be compatible.'
                   .format(py_major_ver, py_minor_ver, ob_ver))
-        print('yes4')
         include_dirs = pkgconfig(pcfile, '--variable=pkgincludedir')
         library_dirs = pkgconfig(pcfile, '--variable=libdir')
         print('Open Babel location automatically determined by pkg-config:')
     except Exception as e:
         print('Warning: %s.\nGuessing Open Babel location:' % e)
-        include_dirs = '/usr/local/include/openbabel3'
-        library_dirs = '/usr/local/lib'
+        include_dirs = '/usr/local/Cellar/open-babel/3.1.1_1.reinstall/include/openbabel3/openbabel'
+        library_dirs = '/usr/local/Cellar/open-babel/3.1.1_1.reinstall/lib'
     return include_dirs, library_dirs
 
 
