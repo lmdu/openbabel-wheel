@@ -17,3 +17,5 @@ cmake ..
 make
 make install
 cd ../../
+
+cp -r openbabel-openbabel-3-1-1/scripts/python/* .
