@@ -14,6 +14,6 @@ cd openbabel-openbabel-3-1-1
 mkdir build
 cd build
 cmake ..
-make
+make -j2
 make install
 cd ../../
