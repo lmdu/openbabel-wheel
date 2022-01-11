@@ -33,6 +33,7 @@ jobs:
           cp openbabel-openbabel-3-1-1/scripts/openbabel-python.i .
           cp openbabel-openbabel-3-1-1/scripts/stereo.i .
           ls -l
+          ls -l openbabel
 
       - name: Build Wheels
         uses: pypa/cibuildwheel@v2.3.1
