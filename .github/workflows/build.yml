@@ -25,10 +25,23 @@ jobs:
       #    mv openbabel-3.1.1.1/* .
       #    rm -rf openbabel-3.1.1.1
 
+      - name: Download openbabel
+        run: |
+          wget https://github.com/openbabel/openbabel/archive/refs/tags/openbabel-3-1-1.tar.gz
+          tar xzf openbabel-3-1-1.tar.gz
+          cd openbabel-openbabel-3-1-1
+          mkdir build
+          cd build
+          cmake .. -DRUN_SWIG=ON -DPYTHON_BINDINGS=ON
+          cd ../../
+          cp -r openbabel-openbabel-3-1-1/scripts/python/* .
+          cp openbabel-openbabel-3-1-1/scripts/openbabel-python.i .
+          cp openbabel-openbabel-3-1-1/scripts/stereo.i .
+          ls -l
+          ls -l openbabel
+
       - name: Build Wheels
         uses: pypa/cibuildwheel@v2.3.1
-        with:
-          package-dir: openbabel-openbabel-3-1-1/scripts/python
         env:
           CIBW_BUILD: cp38-macosx_x86_64 cp38-manylinux_x86_64
           CIBW_BUILD_VERBOSITY: 0

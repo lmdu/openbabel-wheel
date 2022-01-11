@@ -13,10 +13,7 @@ tar xzf openbabel-3-1-1.tar.gz
 cd openbabel-openbabel-3-1-1
 mkdir build
 cd build
-cmake .. -DRUN_SWIG=ON -DPYTHON_BINDINGS=ON
+cmake ..
 make -j2
 make install
 cd ../../
-
-pwd
-ls -ll
