@@ -29,7 +29,8 @@ jobs:
         run: |
           wget https://github.com/openbabel/openbabel/archive/refs/tags/openbabel-3-1-1.tar.gz
           tar xzf openbabel-3-1-1.tar.gz
-          ls -lh
+          ls -lh openbabel-openbabel-3-1-1
+          
 
       - name: Build Wheels
         uses: pypa/cibuildwheel@v2.3.1
