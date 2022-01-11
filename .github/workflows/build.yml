@@ -30,6 +30,7 @@ jobs:
         env:
           CIBW_BUILD: cp38-macosx_x86_64 cp38-manylinux_x86_64
           CIBW_BUILD_VERBOSITY: 0
+          CIBW_ENVIRONMENT_MACOS: PATH=$PATH:/usr/local/lib
           CIBW_BEFORE_BUILD_MACOS: brew install swig eigen && bash ./openbabel_install.sh
           CIBW_BEFORE_BUILD_LINUX: yum install -y wget libxml2-devel zlib-devel eigen3-devel && bash ./openbabel_install.sh
 
