@@ -21,3 +21,6 @@ cd ../../
 
 pwd
 ls -l
+ls -l openbabel-openbabel-3-1-1
+ls -l openbabel-openbabel-3-1-1/python
+ls -l openbabel-openbabel-3-1-1/python/openbabel
