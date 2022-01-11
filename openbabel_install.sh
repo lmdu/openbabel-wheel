@@ -14,7 +14,7 @@ cd openbabel-openbabel-3-1-1
 rm -rf build
 mkdir build
 cd build
-cmake ..
+cmake .. -DRUN_SWIG=ON -DPYTHON_BINDINGS=ON
 make -j2
 make install
 cd ../../
