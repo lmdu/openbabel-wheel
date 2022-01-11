@@ -18,3 +18,6 @@ cmake .. -DRUN_SWIG=ON -DPYTHON_BINDINGS=ON
 make -j2
 make install
 cd ../../
+
+pwd
+ls -l
