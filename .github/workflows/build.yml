@@ -29,7 +29,7 @@ jobs:
         run: |
           wget https://github.com/openbabel/openbabel/archive/refs/tags/openbabel-3-1-1.tar.gz
           tar xzf openbabel-3-1-1.tar.gz
-          cp -r openbabel-openbabel-3-1-1/scripts/python .
+          cp -r openbabel-openbabel-3-1-1/scripts/python/* .
           cp openbabel-openbabel-3-1-1/scripts/openbabel-python.i .
           cp openbabel-openbabel-3-1-1/scripts/stereo.i .
           ls -l
