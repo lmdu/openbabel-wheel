@@ -15,39 +15,22 @@ jobs:
 
       - uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: 3.9
 
-      #- name: Clone openbabel
-      #  run: |
-      #    pip download openbabel==3.1.1.1
-      #    tar xzvf openbabel-3.1.1.1.tar.gz
-          
-      #    mv openbabel-3.1.1.1/* .
-      #    rm -rf openbabel-3.1.1.1
-
-      - name: Download openbabel
+      - name: Clone openbabel
         run: |
-          wget https://github.com/openbabel/openbabel/archive/refs/tags/openbabel-3-1-1.tar.gz
-          tar xzf openbabel-3-1-1.tar.gz
-          cd openbabel-openbabel-3-1-1
-          mkdir build
-          cd build
-          cmake .. -DRUN_SWIG=ON -DPYTHON_BINDINGS=ON
-          cd ../../
-          #cp -r openbabel-openbabel-3-1-1/scripts/python/* .
-          cp openbabel-openbabel-3-1-1/scripts/openbabel-python.i openbabel-openbabel-3-1-1/scripts/python/openbabel
-          cp openbabel-openbabel-3-1-1/scripts/stereo.i openbabel-openbabel-3-1-1/scripts/python/openbabel
-          ls -l
-          ls -l openbabel-openbabel-3-1-1
+          pip download openbabel==3.1.1.1
+          tar xzvf openbabel-3.1.1.1.tar.gz
+
+          mv openbabel-3.1.1.1/* .
+          rm -rf openbabel-3.1.1.1
 
       - name: Build Wheels
         uses: pypa/cibuildwheel@v2.3.1
-        with:
-          package-dir: openbabel-openbabel-3-1-1/scripts/python
         env:
-          CIBW_BUILD: cp38-macosx_x86_64 cp38-manylinux_x86_64
+          CIBW_BUILD: cp39-macosx_x86_64 cp39-manylinux_x86_64
           CIBW_BUILD_VERBOSITY: 0
-          CIBW_BEFORE_BUILD_MACOS: brew install zlib swig eigen && bash ./openbabel_install.sh
+          CIBW_BEFORE_BUILD_MACOS: brew install open-babel
           CIBW_BEFORE_BUILD_LINUX: yum install -y wget libxml2-devel zlib-devel eigen3-devel && bash ./openbabel_install.sh
 
       - run: ls -l wheelhouse
