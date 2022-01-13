@@ -14,13 +14,7 @@ cd openbabel-openbabel-3-1-1
 rm -rf build
 mkdir build
 cd build
-cmake .. -DRUN_SWIG=ON -DPYTHON_BINDINGS=ON
+cmake ..
 make -j2
 make install
 cd ../../
-
-pwd
-ls -l
-ls -l openbabel-openbabel-3-1-1
-ls -l openbabel-openbabel-3-1-1/scripts/python
-ls -l openbabel-openbabel-3-1-1/scripts/python/openbabel
