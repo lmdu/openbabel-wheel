@@ -13,6 +13,7 @@ pip --version
 pip3 --version
 which python
 which python3
+ls -l  /tmp/cibw_bin/
 
 wget https://github.com/openbabel/openbabel/archive/refs/tags/openbabel-3-1-1.tar.gz
 tar xzf openbabel-3-1-1.tar.gz
