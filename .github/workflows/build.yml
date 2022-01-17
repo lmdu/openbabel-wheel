@@ -30,6 +30,7 @@ jobs:
           tar xzf openbabel-3-1-1.tar.gz
           mv openbabel-openbabel-3-1-1/* .
           cp scripts/openbabel-python.i scripts/python/openbabel
+          cp scripts/stereo.i scripts/python/openbabel
 
 
       - name: Build Wheels
