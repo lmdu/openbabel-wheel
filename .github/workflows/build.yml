@@ -8,7 +8,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04, macos-10.15]
+        #os: [ubuntu-20.04, macos-10.15]
+        os: [macos-10.15]
 
     steps:
       - uses: actions/checkout@v2
@@ -17,15 +18,24 @@ jobs:
         with:
           python-version: 3.9
 
-      - name: Clone openbabel
-        run: |
-          pip download openbabel==3.1.1.1
-          tar xzvf openbabel-3.1.1.1.tar.gz
-          mv openbabel-3.1.1.1/* .
-          rm -rf openbabel-3.1.1.1
+      #- name: Clone openbabel
+      #  run: |
+      #    pip download openbabel==3.1.1.1
+      #    tar xzvf openbabel-3.1.1.1.tar.gz
+      #    mv openbabel-3.1.1.1/* .
+      #    rm -rf openbabel-3.1.1.1
+      - name: Download openbabel
+          run: |
+            wget https://github.com/openbabel/openbabel/archive/refs/tags/openbabel-3-1-1.tar.gz
+            tar xzf openbabel-3-1-1.tar.gz
+            mv openbabel-openbabel-3-1-1/* .
+            cp scripts/openbabel-python.i scripts/python
+
 
       - name: Build Wheels
         uses: pypa/cibuildwheel@v2.3.1
+        with:
+          package-dir: scripts/python
         env:
           CIBW_BUILD: cp39-macosx_x86_64 cp39-manylinux_x86_64
           CIBW_BUILD_VERBOSITY: 0
