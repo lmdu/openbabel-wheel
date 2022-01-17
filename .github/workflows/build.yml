@@ -25,11 +25,11 @@ jobs:
       #    mv openbabel-3.1.1.1/* .
       #    rm -rf openbabel-3.1.1.1
       - name: Download openbabel
-          run: |
-            wget https://github.com/openbabel/openbabel/archive/refs/tags/openbabel-3-1-1.tar.gz
-            tar xzf openbabel-3-1-1.tar.gz
-            mv openbabel-openbabel-3-1-1/* .
-            cp scripts/openbabel-python.i scripts/python
+        run: |
+          wget https://github.com/openbabel/openbabel/archive/refs/tags/openbabel-3-1-1.tar.gz
+          tar xzf openbabel-3-1-1.tar.gz
+          mv openbabel-openbabel-3-1-1/* .
+          cp scripts/openbabel-python.i scripts/python
 
 
       - name: Build Wheels
