@@ -13,7 +13,7 @@ rm -rf build
 mkdir build
 cd build
 cmake .. -DRUN_SWIG=ON -DPYTHON_BINDINGS=ON
-make -j2
+make
 make install
 #cd ../../
 cd ..
