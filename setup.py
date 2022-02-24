@@ -6,21 +6,11 @@ from setuptools import setup
 root_dir = os.path.abspath(os.path.dirname(__file__))
 base_dir = os.path.join(root_dir, "scripts", "python")
 
-def find_version():
-    """Extract the current version of these python bindings from the __init__.py file."""
-    try:
-        with open(os.path.join(base_dir, 'openbabel', '__init__.py')) as fp:
-            for line in fp:
-                version_match = re.match(r'^__version__ = "(.+?)"$', line)
-                if version_match:
-                    return version_match.group(1)
-            raise Exception('Could not find version string in openbabel/__init__.py.')
-    except IOError:
-        raise Exception('Could not find openbabel/__init__.py.')
+__VERSION__ = '3.1.1.1.post1'
 
 setup(
-    name='openbabel',
-    version=find_version(),
+    name='openbabel-wheel',
+    version=__VERSION__,
     author='Noel O\'Boyle',
     author_email='openbabel-discuss@lists.sourceforge.net',
     license='GPL-2.0',
