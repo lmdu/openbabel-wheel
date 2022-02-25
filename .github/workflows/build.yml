@@ -17,19 +17,13 @@ jobs:
         with:
           python-version: 3.8
 
-      #- name: Clone openbabel
-      #  run: |
-      #    pip download openbabel==3.1.1.1
-      #    tar xzvf openbabel-3.1.1.1.tar.gz
-      #    mv openbabel-3.1.1.1/* .
-      #    rm -rf openbabel-3.1.1.1
       - name: Download openbabel
         run: |
           wget https://github.com/openbabel/openbabel/archive/refs/tags/openbabel-3-1-1.tar.gz
           tar xzf openbabel-3-1-1.tar.gz
           mv openbabel-openbabel-3-1-1/* .
-          mkdir openbabel
-          ls -lh
+          rm openbabel-3-1-1.tar.gz
+          rm -rf openbabel-openbabel-3-1-1
 
       - name: Build Wheels
         uses: pypa/cibuildwheel@v2.3.1
@@ -38,7 +32,7 @@ jobs:
           CIBW_ARCHS: native
           CIBW_BUILD_VERBOSITY: 0
           CIBW_BEFORE_BUILD_MACOS: brew install swig eigen
-          CIBW_BEFORE_BUILD_LINUX: yum install -y wget libxml2-devel zlib-devel eigen3-devel
+          CIBW_BEFORE_BUILD_LINUX: yum install -y swig eigen3-devel
 
       - run: ls -l wheelhouse
 

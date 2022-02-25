@@ -6,6 +6,11 @@ from setuptools import setup
 root_dir = os.path.abspath(os.path.dirname(__file__))
 base_dir = os.path.join(root_dir, "scripts", "python")
 
+try:
+    os.makedirs('openbabel')
+except OSError:
+    pass
+
 __VERSION__ = '3.1.1.post1'
 
 setup(
@@ -27,6 +32,7 @@ setup(
             cmake_configure_options=[
                 "-DPYTHON_EXECUTABLE={}".format(sys.executable),
                 "-DCMAKE_BUILD_TYPE=Release",
+                "-DWITH_INCHI=ON",
                 "-DPYTHON_BINDINGS=ON",
                 "-DRUN_SWIG=ON",
                 "-DBUILD_BY_PIP=ON",
