@@ -6,7 +6,7 @@ from setuptools import setup
 root_dir = os.path.abspath(os.path.dirname(__file__))
 base_dir = os.path.join(root_dir, "scripts", "python")
 
-__VERSION__ = '3.1.1.1.post1'
+__VERSION__ = '3.1.1.post1'
 
 setup(
     name='openbabel-wheel',
