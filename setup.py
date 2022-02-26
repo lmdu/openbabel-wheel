@@ -6,10 +6,10 @@ from setuptools import setup
 root_dir = os.path.abspath(os.path.dirname(__file__))
 base_dir = os.path.join(root_dir, "scripts", "python")
 
-#try:
-#    os.makedirs('openbabel')
-#except OSError:
-#    pass
+try:
+    os.makedirs('openbabel')
+except OSError:
+    pass
 
 from distutils.sysconfig import get_python_inc
 import distutils.sysconfig as sysconfig
