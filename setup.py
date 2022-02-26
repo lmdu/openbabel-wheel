@@ -6,10 +6,16 @@ from setuptools import setup
 root_dir = os.path.abspath(os.path.dirname(__file__))
 base_dir = os.path.join(root_dir, "scripts", "python")
 
-try:
-    os.makedirs('openbabel')
-except OSError:
-    pass
+#try:
+#    os.makedirs('openbabel')
+#except OSError:
+#    pass
+
+from distutils.sysconfig import get_python_inc
+import distutils.sysconfig as sysconfig
+
+PY_INC_DIR = get_python_inc()
+PY_LIB_DIR = sysconfig.get_config_var('LIBDIR')
 
 __VERSION__ = '3.1.1.post1'
 
@@ -30,12 +36,13 @@ setup(
             name="OpenBabel",
             install_prefix="openbabel",
             cmake_configure_options=[
+                "-DCMAKE_INSTALL_PREFIX=openbabel"
                 "-DPYTHON_EXECUTABLE={}".format(sys.executable),
-                "-DCMAKE_BUILD_TYPE=Release",
                 "-DWITH_INCHI=ON",
                 "-DPYTHON_BINDINGS=ON",
                 "-DRUN_SWIG=ON",
-                "-DBUILD_BY_PIP=ON",
+                "-DPYTHON_INCLUDE_DIR={}".format(PY_INC_DIR),
+                "-DPYTHON_LIBRARY={}".format(PY_LIB_DIR)
             ]
         ),
     ],
