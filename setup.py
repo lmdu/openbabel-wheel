@@ -1,18 +1,18 @@
 import os
 import sys
-from cmake_build_extension import BuildExtension, CMakeExtension
 from setuptools import setup
+import distutils.sysconfig as sysconfig
+from distutils.sysconfig import get_python_inc
+from cmake_build_extension import BuildExtension, CMakeExtension
+
 
 root_dir = os.path.abspath(os.path.dirname(__file__))
 base_dir = os.path.join(root_dir, "scripts", "python")
 
-try:
-    os.makedirs('openbabel')
-except OSError:
-    pass
-
-from distutils.sysconfig import get_python_inc
-import distutils.sysconfig as sysconfig
+#try:
+#    os.makedirs('openbabel')
+#except OSError:
+#    pass
 
 PY_INC_DIR = get_python_inc()
 PY_LIB_DIR = sysconfig.get_config_var('LIBDIR')
@@ -36,7 +36,7 @@ setup(
             name="OpenBabel",
             install_prefix="openbabel",
             cmake_configure_options=[
-                "-DCMAKE_INSTALL_PREFIX=openbabel"
+                "-DCMAKE_INSTALL_PREFIX=openbabel",
                 "-DPYTHON_EXECUTABLE={}".format(sys.executable),
                 "-DWITH_INCHI=ON",
                 "-DPYTHON_BINDINGS=ON",
