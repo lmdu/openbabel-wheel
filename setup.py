@@ -40,8 +40,8 @@ setup(
                 "-DWITH_INCHI=ON",
                 "-DPYTHON_BINDINGS=ON",
                 "-DRUN_SWIG=ON",
-                "-DPYTHON_INCLUDE_DIR={}".format(PY_INC_DIR),
-                "-DPYTHON_LIBRARY={}".format(PY_LIB_DIR)
+                #"-DPYTHON_INCLUDE_DIR={}".format(PY_INC_DIR),
+                #"-DPYTHON_LIBRARY={}".format(PY_LIB_DIR)
             ]
         ),
     ],

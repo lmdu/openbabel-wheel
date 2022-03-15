@@ -20,7 +20,7 @@ jobs:
 
       - name: Download openbabel
         run: |
-          wget https://github.com/openbabel/openbabel/releases/download/openbabel-3-1-1/openbabel-3.1.1-source.tar.bz2
+          wget -q https://github.com/openbabel/openbabel/releases/download/openbabel-3-1-1/openbabel-3.1.1-source.tar.bz2
           tar xjf openbabel-3.1.1-source.tar.bz2
           mv openbabel-3.1.1/* .
           rm openbabel-3.1.1-source.tar.bz2
