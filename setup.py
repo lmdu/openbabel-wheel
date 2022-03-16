@@ -36,12 +36,12 @@ setup(
             name="OpenBabel",
             install_prefix="openbabel",
             cmake_configure_options=[
-                "-DPYTHON_EXECUTABLE={}".format(sys.executable),
-                "-DWITH_INCHI=ON",
-                "-DPYTHON_BINDINGS=ON",
                 "-DRUN_SWIG=ON",
-                #"-DPYTHON_INCLUDE_DIR={}".format(PY_INC_DIR),
-                #"-DPYTHON_LIBRARY={}".format(PY_LIB_DIR)
+                "-DWITH_INCHI=ON",
+                "-DPYTHON_EXECUTABLE={}".format(sys.executable),
+                "-DPYTHON_BINDINGS=ON",
+                "-DPYTHON_INCLUDE_DIR={}".format(PY_INC_DIR),
+                "-DPYTHON_LIBRARY={}".format(PY_LIB_DIR)
             ]
         ),
     ],
