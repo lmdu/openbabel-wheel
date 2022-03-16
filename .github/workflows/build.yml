@@ -25,6 +25,7 @@ jobs:
           mv openbabel-3.1.1/* .
           rm openbabel-3.1.1-source.tar.bz2
           rm -rf openbabel-3.1.1
+          sed -i 's/        install(TARGETS bindings_python/set(PYOBABEL_INSTDIR ".")\n        install(TARGETS bindings_python/' scripts/CMakeLists.txt 
 
       - name: Build Wheels
         uses: pypa/cibuildwheel@v2.3.1
@@ -36,7 +37,9 @@ jobs:
           CIBW_BEFORE_BUILD_MACOS: brew install swig eigen
           CIBW_BEFORE_BUILD_LINUX: yum install -y swig eigen3-devel
 
-      - run: ls -l wheelhouse
+      - run: |
+          ls -l wheelhouse
+          ls -l
 
       - uses: actions/upload-artifact@v2
         with:
