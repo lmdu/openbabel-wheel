@@ -17,6 +17,12 @@ except OSError:
 PY_INC_DIR = get_python_inc()
 PY_LIB_DIR = sysconfig.get_config_var('LIBDIR')
 
+print('#################')
+print(PY_INC_DIR)
+print(PY_LIB_DIR)
+print(sys.executable)
+print('#################')
+
 __VERSION__ = '3.1.1.post1'
 
 setup(
@@ -40,8 +46,8 @@ setup(
                 "-DWITH_INCHI=ON",
                 "-DPYTHON_EXECUTABLE={}".format(sys.executable),
                 "-DPYTHON_BINDINGS=ON",
-                #"-DPYTHON_INCLUDE_DIR={}".format(PY_INC_DIR),
-                #"-DPYTHON_LIBRARY={}".format(PY_LIB_DIR)
+                "-DPYTHON_INCLUDE_DIR={}".format(PY_INC_DIR),
+                "-DPYTHON_LIBRARY={}".format(PY_LIB_DIR)
             ]
         ),
     ],
