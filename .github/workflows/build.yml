@@ -8,8 +8,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        #os: [ubuntu-20.04, macos-10.15]
-        os: [macos-10.15]
+        os: [ubuntu-20.04, macos-10.15]
+        #os: [macos-10.15]
 
     steps:
       - uses: actions/checkout@v2
@@ -26,6 +26,11 @@ jobs:
           mv openbabel-wheel-3.1.1.5/* .
           rm openbabel-wheel-3.1.1.5.tar.gz
           rm -rf openbabel-wheel-3.1.1.5
+          if [ "$RUNNER_OS" == "Linux" ]; then
+            sed -i 's/name="openbabel-wheel"/name="openbabel"/' setup.py
+          else
+            sed -i "" 's/name="openbabel-wheel"/name="openbabel"/' setup.py
+          fi
 
       - name: Build Wheels
         uses: pypa/cibuildwheel@v2.3.1
@@ -38,8 +43,8 @@ jobs:
           CIBW_BEFORE_BUILD_LINUX: yum install -y swig eigen3-devel
 
       - run: |
-          wget https://files.pythonhosted.org/packages/e1/1d/0765f128f5ea5fce2af2ab91d5c3aeddc490669b264435a4284d57f3df7f/openbabel_wheel-3.1.1.5-cp38-cp38-manylinux2014_x86_64.whl
-          mv openbabel_wheel-3.1.1.5-cp38-cp38-manylinux2014_x86_64.whl wheelhouse
+          #wget https://files.pythonhosted.org/packages/e1/1d/0765f128f5ea5fce2af2ab91d5c3aeddc490669b264435a4284d57f3df7f/openbabel_wheel-3.1.1.5-cp38-cp38-manylinux2014_x86_64.whl
+          #mv openbabel_wheel-3.1.1.5-cp38-cp38-manylinux2014_x86_64.whl wheelhouse
           ls -l wheelhouse
 
       - uses: actions/upload-artifact@v2
