@@ -21,7 +21,7 @@ jobs:
       - name: Download openbabel
         run: |
           which python
-          pip download --no-binary :all: openbabel-wheel==3.1.1.5
+          pip download --no-binary ":all:" openbabel-wheel==3.1.1.5
           tar xzf openbabel-wheel-3.1.1.5.tar.gz
           mv openbabel-wheel-3.1.1.5/* .
           rm openbabel-wheel-3.1.1.5.tar.gz
