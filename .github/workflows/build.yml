@@ -33,14 +33,14 @@ jobs:
           fi
 
       - name: Build Wheels
-        uses: pypa/cibuildwheel@v2.1.1
+        uses: pypa/cibuildwheel@v1.10.0
         env:
           CIBW_SKIP: pp* *musllinux*
           CIBW_BUILD: cp38-*
           CIBW_ARCHS: native
           CIBW_BUILD_VERBOSITY: 1
           CIBW_BEFORE_BUILD_MACOS: brew install swig eigen cairo
-          CIBW_BEFORE_BUILD_LINUX: yum install -y eigen3-devel cairo-devel swig
+          CIBW_BEFORE_BUILD_LINUX: yum install -y eigen3-devel cairo-devel zlib-devel && chmod +x install_swig.sh
 
       - run: |
           ls -l wheelhouse
