@@ -40,8 +40,8 @@ jobs:
           CIBW_ARCHS: native
           CIBW_BUILD_VERBOSITY: 2
           CIBW_BEFORE_BUILD_MACOS: brew install swig eigen cairo
-          CIBW_BEFORE_BUILD_LINUX: python3 -c "import sysconfig;print(sysconfig.get_paths())" && yum install -y eigen3-devel cairo-devel swig
-          #CIBW_ENVIRONMENT_LINUX: 
+          CIBW_BEFORE_BUILD_LINUX: yum install -y eigen3-devel cairo-devel swig
+          CIBW_ENVIRONMENT_LINUX: PYTHON_INCLUDE_DIRS=/opt/python/cp38-cp38/include/python3.8 PYTHON_LIBRARIES=/opt/python/cp38-cp38/lib/python3.8
 
       - run: |
           ls -l wheelhouse
