@@ -21,7 +21,7 @@ jobs:
       - name: Download openbabel
         run: |
           which python
-          wget -q https://files.pythonhosted.org/packages/92/c5/e010bb31c67383ceeaf724fe945b2cc7de1242ad9e6f673af111f760e22a/openbabel-wheel-3.1.1.5.tar.gz
+          pip download --no-binary :all: openbabel-wheel==3.1.1.5
           tar xzf openbabel-wheel-3.1.1.5.tar.gz
           mv openbabel-wheel-3.1.1.5/* .
           rm openbabel-wheel-3.1.1.5.tar.gz
@@ -40,7 +40,7 @@ jobs:
           CIBW_ARCHS: native
           CIBW_BUILD_VERBOSITY: 2
           CIBW_BEFORE_BUILD_MACOS: brew install swig eigen cairo
-          CIBW_BEFORE_BUILD_LINUX: ls -l /opt/_internal/cpython-3.8.12/include && ls -l /opt/_internal/cpython-3.8.12/lib && yum install -y eigen3-devel cairo-devel swig
+          CIBW_BEFORE_BUILD_LINUX: ls -l /opt/_internal/cpython-3.8.12/include/python3.8 && ls -l /opt/_internal/cpython-3.8.12/lib/python3.8 && yum install -y eigen3-devel cairo-devel swig
 
       - run: |
           ls -l wheelhouse
