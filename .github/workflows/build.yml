@@ -26,11 +26,11 @@ jobs:
           mv openbabel-wheel-3.1.1.5/* .
           rm openbabel-wheel-3.1.1.5.tar.gz
           rm -rf openbabel-wheel-3.1.1.5
-          #if [ "$RUNNER_OS" == "Linux" ]; then
-          #  sed -i 's/name="openbabel-wheel"/name="openbabel"/' setup.py
-          #else
-          #  sed -i "" 's/name="openbabel-wheel"/name="openbabel"/' setup.py
-          #fi
+          if [ "$RUNNER_OS" == "Linux" ]; then
+            sed -i 's/name="openbabel-wheel"/name="openbabel"/' setup.py
+          else
+            sed -i "" 's/name="openbabel-wheel"/name="openbabel"/' setup.py
+          fi
 
       - name: Build Wheels
         uses: pypa/cibuildwheel@v2.3.1
