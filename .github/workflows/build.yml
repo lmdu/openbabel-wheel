@@ -28,14 +28,13 @@ jobs:
           rm -rf openbabel-wheel-3.1.1.5
           if [ "$RUNNER_OS" == "Linux" ]; then
             sed -i 's/name="openbabel-wheel"/name="openbabel"/' setup.py
-            sed -i 's/find_package(PythonInterp)/find_package (Python COMPONENTS Interpreter Development)/' scripts/CMakeLists.txt
-            sed -i 's/find_package(PythonLibs)//' scripts/CMakeLists.txt
+            mv -f CMakeLists.s.txt scripts/CMakeLists.txt
           else
             sed -i "" 's/name="openbabel-wheel"/name="openbabel"/' setup.py
           fi
 
       - name: Build Wheels
-        uses: pypa/cibuildwheel@v2.5.0
+        uses: pypa/cibuildwheel@v2.3.1
         env:
           CIBW_SKIP: pp* *musllinux*
           CIBW_BUILD: cp38-*
