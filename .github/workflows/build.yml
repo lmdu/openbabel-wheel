@@ -28,6 +28,8 @@ jobs:
           rm -rf openbabel-wheel-3.1.1.5
           if [ "$RUNNER_OS" == "Linux" ]; then
             sed -i 's/name="openbabel-wheel"/name="openbabel"/' setup.py
+            sed -i 's/find_package(PythonInterp)/find_package (Python COMPONENTS Interpreter Development)/' scripts/CMakeLists.txt
+            sed -i 's/find_package(PythonLibs)//' scripts/CMakeLists.txt
           else
             sed -i "" 's/name="openbabel-wheel"/name="openbabel"/' setup.py
           fi
@@ -40,7 +42,7 @@ jobs:
           CIBW_ARCHS: native
           CIBW_BUILD_VERBOSITY: 1
           CIBW_BEFORE_BUILD_MACOS: brew install swig eigen cairo
-          CIBW_BEFORE_BUILD_LINUX: cmake --version && yum install -y eigen3-devel cairo-devel swig
+          CIBW_BEFORE_BUILD_LINUX: yum install -y eigen3-devel cairo-devel swig
 
       - run: |
           ls -l wheelhouse
