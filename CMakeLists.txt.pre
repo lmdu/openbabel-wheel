@@ -48,7 +48,7 @@ if (PYTHON_BINDINGS)
       set(Python_ADDITIONAL_VERSIONS "${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}")
     endif (PYTHONINTERP_FOUND AND NOT Python_ADDITIONAL_VERSIONS)
 
-    find_package(PythonLibs REQUIRED)
+    find_package(PythonLibs)
     set(PYTHONLIBS_FOUND TRUE)
     set(PYTHON_INCLUDE_DIRS /opt/python/cp38-cp3/include/python3.8)
     set(PYTHON_LIBRARIES /host/usr/lib/python3.8/config-3.8-x86_64-linux-gnu/libpython3.8.so)
