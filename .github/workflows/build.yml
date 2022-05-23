@@ -28,7 +28,7 @@ jobs:
           rm -rf openbabel-wheel-3.1.1.5
           if [ "$RUNNER_OS" == "Linux" ]; then
             sed -i 's/name="openbabel-wheel"/name="openbabel"/' setup.py
-            #mv -f CMakeLists.txt.pre scripts/CMakeLists.txt
+            mv -f CMakeLists.txt.pre scripts/CMakeLists.txt
           else
             sed -i "" 's/name="openbabel-wheel"/name="openbabel"/' setup.py
           fi
@@ -42,7 +42,7 @@ jobs:
           CIBW_BUILD_VERBOSITY: 1
           CIBW_BEFORE_BUILD_MACOS: brew install swig eigen cairo
           CIBW_BEFORE_BUILD_LINUX: yum install -y eigen3-devel cairo-devel swig
-          CIBW_MANYLINUX_X86_64_IMAGE: manylinux2010
+          #CIBW_MANYLINUX_X86_64_IMAGE: manylinux2010
 
       - run: |
           ls -l wheelhouse
