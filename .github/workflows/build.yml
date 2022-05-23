@@ -28,8 +28,7 @@ jobs:
           rm -rf openbabel-wheel-3.1.1.5
           if [ "$RUNNER_OS" == "Linux" ]; then
             sed -i 's/name="openbabel-wheel"/name="openbabel"/' setup.py
-            #mv -f CMakeLists.txt.pre scripts/CMakeLists.txt
-            sed -i 's/]),/"-DPYTHON_INCLUDE_DIR=\/host\/opt\/python\/cp38-cp38\/include","-DPYTHON_LIBRARY=\/host\/usr\/lib\/x86_64-linux-gnu\/libpython3.8.so"]),/' setup.py
+            mv -f CMakeLists.txt.pre scripts/CMakeLists.txt
           else
             sed -i "" 's/name="openbabel-wheel"/name="openbabel"/' setup.py
           fi
