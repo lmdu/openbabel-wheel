@@ -48,8 +48,6 @@ if (PYTHON_BINDINGS)
       set(Python_ADDITIONAL_VERSIONS "${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}")
     endif (PYTHONINTERP_FOUND AND NOT Python_ADDITIONAL_VERSIONS)
 
-    message(STATUS "####### ${PYTHON_INCLUDE_DIR} ${PYTHON_LIBRARIES}")
-
     find_package(PythonLibs REQUIRED)
     set(PYTHONLIBS_FOUND TRUE)
     set(PYTHON_INCLUDE_DIRS /opt/python/cp38-cp3/include/python3.8)
