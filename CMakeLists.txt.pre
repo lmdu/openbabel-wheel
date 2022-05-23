@@ -51,6 +51,10 @@ if (PYTHON_BINDINGS)
     message(STATUS "####### ${PYTHON_INCLUDE_DIR} ${PYTHON_LIBRARIES}")
 
     find_package(PythonLibs REQUIRED)
+    set(PYTHONLIBS_FOUND TRUE)
+    set(PYTHON_INCLUDE_DIRS /opt/python/cp38-cp3/include/python3.8)
+    set(PYTHON_LIBRARIES /host/usr/lib/python3.8/config-3.8-x86_64-linux-gnu/libpython3.8.so)
+
     if (NOT PYTHONLIBS_FOUND)
       message(STATUS "Python libraries NOT found")
     endif (NOT PYTHONLIBS_FOUND)
