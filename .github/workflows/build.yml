@@ -34,16 +34,16 @@ jobs:
         env:
           CIBW_SKIP: pp* *musllinux*
           CIBW_BUILD: cp38-*
-          CIBW_ARCHS: native
-          CIBW_BUILD_VERBOSITY: 1
+          CIBW_ARCHS: x86_64
+          CIBW_BUILD_VERBOSITY: 2
           CIBW_MANYLINUX_x86_64_IMAGE: manylinux_2_28
           CIBW_BEFORE_BUILD_MACOS: brew install open-babel
-          CIBW_BEFORE_BUILD_LINUX: dnf install -y gcc gcc-c++ swig openbabel-devel
+          CIBW_BEFORE_BUILD_LINUX: dnf install -y epel-release gcc gcc-c++ swig openbabel-devel
 
       - run: |
           ls -l wheelhouse
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           path: ./wheelhouse/*.whl
 
