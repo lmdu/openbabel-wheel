@@ -8,8 +8,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        #os: [ubuntu-20.04, macos-10.15]
-        os: [macos-10.15]
+        os: [ubuntu-20.04, macos-11]
+        #os: [macos-10.15]
 
     steps:
       - uses: actions/checkout@v2
@@ -21,16 +21,13 @@ jobs:
       - name: Download openbabel
         run: |
           which python
-          wget -q https://files.pythonhosted.org/packages/92/c5/e010bb31c67383ceeaf724fe945b2cc7de1242ad9e6f673af111f760e22a/openbabel-wheel-3.1.1.5.tar.gz
-          tar xzf openbabel-wheel-3.1.1.5.tar.gz
-          mv openbabel-wheel-3.1.1.5/* .
-          rm openbabel-wheel-3.1.1.5.tar.gz
-          rm -rf openbabel-wheel-3.1.1.5
-          if [ "$RUNNER_OS" == "Linux" ]; then
-            sed -i 's/name="openbabel-wheel"/name="openbabel"/' setup.py
-          else
-            sed -i "" 's/name="openbabel-wheel"/name="openbabel"/' setup.py
-          fi
+          pip3 download openbabel
+          tar xzf openbabel-wheel-3.1.1.1.tar.gz
+          mv openbabel-wheel-3.1.1.1/* .
+          rm openbabel-wheel-3.1.1.1.tar.gz
+          rm -rf openbabel-wheel-3.1.1.1
+          rm setup.py
+          mv obsetup.py setup.py
 
       - name: Build Wheels
         uses: pypa/cibuildwheel@v2.5.0
@@ -39,9 +36,9 @@ jobs:
           CIBW_BUILD: cp38-*
           CIBW_ARCHS: native
           CIBW_BUILD_VERBOSITY: 1
-          CIBW_BEFORE_BUILD_MACOS: brew install swig eigen cairo boost
-          CIBW_BEFORE_BUILD_LINUX: yum install -y swig eigen3-devel cairo-devel
-          CIBW_ENVIRONMENT_MACOS: MACOSX_DEPLOYMENT_TARGET=10.15
+          CIBW_MANYLINUX_x86_64_IMAGE: manylinux_2_28
+          CIBW_BEFORE_BUILD_MACOS: brew install open-babel
+          CIBW_BEFORE_BUILD_LINUX: dnf install -y gcc gcc-c++ swig openbabel-devel
 
       - run: |
           ls -l wheelhouse
