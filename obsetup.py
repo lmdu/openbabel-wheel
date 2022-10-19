@@ -1,4 +1,5 @@
 import os
+import sys
 import shutil
 import subprocess
 from setuptools import Extension, find_packages, setup
@@ -10,7 +11,11 @@ def find_version():
 				return line.split('=')[1].strip().strip('"')
 
 def find_data():
-	src_dir = '/usr/share/openbabel/3.1.1'
+	if sys.platform == 'darwin':
+		src_dir = '/usr/local/Cellar/open-babel/3.1.1_1/share/openbabel/3.1.0'
+	else:
+		src_dir = '/usr/share/openbabel/3.1.1'
+
 	dest_dir = 'openbabel/data'
 
 	if os.path.exists(dest_dir):
