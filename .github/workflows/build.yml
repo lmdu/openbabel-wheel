@@ -16,7 +16,7 @@ jobs:
 
       - uses: actions/setup-python@v4
         with:
-          python-version: 3.8
+          python-version: 3.x
 
       - name: Download openbabel
         run: |
@@ -33,10 +33,10 @@ jobs:
         uses: pypa/cibuildwheel@v2.11.1
         env:
           CIBW_SKIP: pp* *musllinux*
-          CIBW_BUILD: cp38-*
+          CIBW_BUILD: cp39-*
           CIBW_ARCHS: x86_64
           CIBW_BUILD_VERBOSITY: 2
-          CIBW_MANYLINUX_x86_64_IMAGE: manylinux_2_28
+          CIBW_MANYLINUX_X86_64_IMAGE: manylinux_2_28
           CIBW_BEFORE_BUILD_MACOS: brew install open-babel
           CIBW_BEFORE_BUILD_LINUX: dnf install -y epel-release gcc gcc-c++ swig openbabel-devel
 
