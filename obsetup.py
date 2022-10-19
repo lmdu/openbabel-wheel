@@ -12,7 +12,7 @@ def find_version():
 
 def find_data():
 	if sys.platform == 'darwin':
-		src_dir = '/usr/local/Cellar/open-babel/3.1.1_1/share/openbabel/3.1.0'
+		src_dir = '/usr/local/Cellar/open-babel/3.1.1_2/share/openbabel/3.1.0'
 	else:
 		src_dir = '/usr/share/openbabel/3.1.1'
 
