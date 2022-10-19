@@ -12,25 +12,25 @@ jobs:
         #os: [macos-10.15]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
         with:
           python-version: 3.8
 
       - name: Download openbabel
         run: |
           which python
-          pip3 download openbabel
-          tar xzf openbabel-wheel-3.1.1.1.tar.gz
-          mv openbabel-wheel-3.1.1.1/* .
-          rm openbabel-wheel-3.1.1.1.tar.gz
-          rm -rf openbabel-wheel-3.1.1.1
+          pip3 download openbabel==3.1.1.1
+          tar xzf openbabel-3.1.1.1.tar.gz
+          mv openbabel-3.1.1.1/* .
+          rm openbabel-3.1.1.1.tar.gz
+          rm -rf openbabel-3.1.1.1
           rm setup.py
           mv obsetup.py setup.py
 
       - name: Build Wheels
-        uses: pypa/cibuildwheel@v2.5.0
+        uses: pypa/cibuildwheel@v2.11.1
         env:
           CIBW_SKIP: pp* *musllinux*
           CIBW_BUILD: cp38-*
