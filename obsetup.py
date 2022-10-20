@@ -13,16 +13,23 @@ def find_version():
 
 def find_data():
 	if sys.platform == 'darwin':
-		src_dir = '/usr/local/Cellar/open-babel/3.1.1_2/share/openbabel/3.1.0'
+		data_src = '/usr/local/Cellar/open-babel/3.1.1_2/share/openbabel/3.1.0'
+		libs_src = '/usr/local/Cellar/open-babel/3.1.1_2/lib/openbabel/3.1.0'
 	else:
-		src_dir = '/usr/share/openbabel/3.1.1'
+		data_src = '/usr/share/openbabel/3.1.1'
+		libs_src = '/usr/lib64/openbabel'
 
-	dest_dir = 'openbabel/data'
+	data_dest = 'openbabel/data'
+	libs_dest = 'openbabel/plugin'
 
-	if os.path.exists(dest_dir):
-		shutil.rmtree(dest_dir)
+	if os.path.exists(data_dest):
+		shutil.rmtree(data_dest)
 
-	shutil.copytree(src_dir, dest_dir)
+	if os.path.exists(libs_dest):
+		shutil.rmtree(libs_dest)
+
+	shutil.copytree(data_src, data_dest)
+	shutil.copytree(libs_src, libs_dest)
 
 class BuildPy(build_py):
 	def run(self):
@@ -66,7 +73,7 @@ setup(
 	long_description = open('README.rst').read(),
 	zip_safe = False,
 	packages = ['openbabel'],
-	package_data = {'': ['data/*']},
+	package_data = {'': ['data/*'], '': ['plugin/*']},
 	ext_modules = [obextension],
 	cmdclass = {'build_py': BuildPy},
 	classifiers = [

@@ -6,6 +6,7 @@ try:
     if 'BABEL_DATADIR' not in os.environ:
         base_dir = os.path.dirname(__file__)
         os.environ['BABEL_DATADIR'] = os.path.join(base_dir, 'data')
+        os.environ['BABEL_LIBDIR'] = os.path.join(base_dir, 'plugin')
 except Exception:
     pass
 
