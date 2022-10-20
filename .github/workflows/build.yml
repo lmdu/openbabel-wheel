@@ -38,7 +38,7 @@ jobs:
           CIBW_BUILD_VERBOSITY: 1
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux_2_28
           CIBW_BEFORE_BUILD_MACOS: brew install open-babel
-          CIBW_BEFORE_BUILD_LINUX: dnf install -y epel-release && dnf install -y gcc gcc-c++ openbabel-devel && pip3 install swig && swig -version
+          CIBW_BEFORE_BUILD_LINUX: dnf install -y epel-release && dnf install -y swig gcc gcc-c++ openbabel-devel
 
       - run: |
           ls -l wheelhouse

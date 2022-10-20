@@ -3,6 +3,7 @@ import sys
 import shutil
 import subprocess
 from setuptools import Extension, find_packages, setup
+from setuptools.command.build_py import build_py
 
 def find_version():
 	with open(os.path.join('openbabel', '__init__.py')) as fp:
@@ -22,6 +23,13 @@ def find_data():
 		shutil.rmtree(dest_dir)
 
 	shutil.copytree(src_dir, dest_dir)
+
+class BuildPy(build_py):
+	def run(self):
+		find_data()
+
+		self.run_command('build_ext')
+		super(build_py, self).run()
 
 def pkg_config(option):
 	return subprocess.check_output(
@@ -47,22 +55,21 @@ obextension = Extension(
 	]
 )
 
-find_data()
-
 setup(
-	name='openbabel',
-	version=find_version(),
-	author='Noel O\'Boyle',
-	author_email='openbabel-discuss@lists.sourceforge.net',
-	license='GPL-2.0',
-	url='http://openbabel.org/',
-	description='Python interface to the Open Babel chemistry library',
-	long_description=open('README.rst').read(),
-	zip_safe=False,
-	packages=['openbabel'],
+	name = 'openbabel',
+	version = find_version(),
+	author = 'Noel O\'Boyle',
+	author_email = 'openbabel-discuss@lists.sourceforge.net',
+	license = 'GPL-2.0',
+	url = 'http://openbabel.org/',
+	description = 'Python interface to the Open Babel chemistry library',
+	long_description = open('README.rst').read(),
+	zip_safe = False,
+	packages = ['openbabel'],
 	package_data = {'': ['data/*']},
-	ext_modules=[obextension],
-	classifiers=[
+	ext_modules = [obextension],
+	cmdclass = {'build_py': BuildPy},
+	classifiers = [
 		'Development Status :: 5 - Production/Stable',
 		'Environment :: Console',
 		'Environment :: Other Environment',
