@@ -73,7 +73,7 @@ setup(
 	long_description = open('README.rst').read(),
 	zip_safe = False,
 	packages = ['openbabel'],
-	package_data = {'': ['data/*'], '': ['plugin/*']},
+	package_data = {'': ['data/*', 'plugin/*']},
 	ext_modules = [obextension],
 	cmdclass = {'build_py': BuildPy},
 	classifiers = [
