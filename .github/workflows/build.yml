@@ -37,8 +37,8 @@ jobs:
           CIBW_ARCHS: native
           CIBW_BUILD_VERBOSITY: 1
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux_2_28
-          CIBW_BEFORE_BUILD_MACOS: brew install open-babel && ls -lR /usr/local/Cellar/open-babel/3.1.1_2
-          CIBW_BEFORE_BUILD_LINUX: dnf install -y epel-release && dnf install -y gcc gcc-c++ swig openbabel-devel
+          CIBW_BEFORE_BUILD_MACOS: brew install open-babel
+          CIBW_BEFORE_BUILD_LINUX: dnf install -y epel-release && dnf install -y gcc gcc-c++ openbabel-devel && pip3 install swig
 
       - run: |
           ls -l wheelhouse
