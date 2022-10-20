@@ -28,12 +28,14 @@ jobs:
           rm -rf openbabel-3.1.1.1
           rm setup.py
           mv obsetup.py setup.py
+          rm openbabel/__init__.py
+          mv __init__.py openbabel
 
       - name: Build Wheels
         uses: pypa/cibuildwheel@v2.11.1
         env:
           CIBW_SKIP: pp* *musllinux*
-          CIBW_BUILD: cp38-*
+          #CIBW_BUILD: cp38-*
           CIBW_ARCHS: native
           CIBW_BUILD_VERBOSITY: 1
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux_2_28
