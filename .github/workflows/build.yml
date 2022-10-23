@@ -36,7 +36,7 @@ jobs:
         env:
           MACOSX_DEPLOYMENT_TARGET: 10.15
           CIBW_SKIP: pp* *musllinux*
-          CIBW_BUILD: cp39-*
+          #CIBW_BUILD: cp39-*
           CIBW_ARCHS: native
           CIBW_BUILD_VERBOSITY: 1
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux_2_28
