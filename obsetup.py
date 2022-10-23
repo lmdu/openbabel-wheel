@@ -49,7 +49,7 @@ lib_dirs = pkg_config('--variable=libdir')
 
 obextension = Extension(
 	name = 'openbabel._openbabel',
-	swig_opts = ['-c++', '-small', '-O', '-templatereduce', '-naturalvar',
+	swig_opts = ['-c++', '-py3', '-small', '-O', '-templatereduce', '-naturalvar',
 		'-I{}'.format(inc_dirs)
 	],
 	sources = [os.path.join('openbabel', 'openbabel-python.i')],
@@ -58,7 +58,7 @@ obextension = Extension(
 	extra_compile_args = [
 	],
 	extra_link_args = [
-		'-fopenbabel'
+		'-lopenbabel'
 	]
 )
 
