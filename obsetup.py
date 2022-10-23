@@ -58,7 +58,7 @@ obextension = Extension(
 	extra_compile_args = [
 	],
 	extra_link_args = [
-		'-lopenbabel'
+		'-fopenbabel'
 	]
 )
 
