@@ -47,6 +47,11 @@ def pkg_config(option):
 inc_dirs = pkg_config('--variable=pkgincludedir')
 lib_dirs = pkg_config('--variable=libdir')
 
+if sys.platform == 'darwin':
+	compile_args = ['-std=c++11']
+else:
+	compile_args = []
+
 obextension = Extension(
 	name = 'openbabel._openbabel',
 	swig_opts = ['-c++', '-small', '-O', '-templatereduce', '-naturalvar',
@@ -55,12 +60,8 @@ obextension = Extension(
 	sources = [os.path.join('openbabel', 'openbabel-python.i')],
 	library_dirs = [lib_dirs],
 	include_dirs = [inc_dirs],
-	extra_compile_args = [
-		'-std=c++11'
-	],
-	extra_link_args = [
-		'-lopenbabel'
-	]
+	extra_compile_args = compile_args,
+	extra_link_args = ['-lopenbabel']
 )
 
 setup(
