@@ -35,12 +35,13 @@ jobs:
       - name: Build Wheels
         uses: pypa/cibuildwheel@v2.11.1
         env:
+          MACOSX_DEPLOYMENT_TARGET: 10.15
           CIBW_SKIP: pp* *musllinux*
           CIBW_BUILD: cp39-*
           CIBW_ARCHS: native
           CIBW_BUILD_VERBOSITY: 1
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux_2_28
-          CIBW_BEFORE_BUILD_MACOS: brew install open-babel && brew uninstall --ignore-dependencies python@3.10
+          CIBW_BEFORE_BUILD_MACOS: brew install open-babel
           CIBW_BEFORE_BUILD_LINUX: dnf install -y epel-release && dnf install -y swig gcc gcc-c++ openbabel-devel
 
       - run: |
