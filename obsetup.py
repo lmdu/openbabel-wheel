@@ -17,7 +17,7 @@ def find_data():
 		libs_src = '/usr/local/Cellar/open-babel/3.1.1_2/lib/openbabel/3.1.0'
 	else:
 		data_src = '/usr/share/openbabel/3.1.1'
-		libs_src = '/usr/lib64/openbabel'
+		libs_src = '/usr/lib64/openbabel3'
 
 	data_dest = 'openbabel/data'
 	libs_dest = 'openbabel/plugin'
