@@ -33,7 +33,7 @@ jobs:
       - name: Build Wheels
         uses: pypa/cibuildwheel@v2.19.0
         env:
-          CIBW_BUILD_VERBOSITY: 1
+          CIBW_BUILD_VERBOSITY: 3
           CIBW_SKIP: pp* *musllinux*
           CIBW_ARCHS_LINUX: x86_64
           CIBW_ARCHS_MACOS: x86_64
@@ -41,7 +41,6 @@ jobs:
           CIBW_BEFORE_BUILD_MACOS: brew reinstall open-babel
           CIBW_BEFORE_BUILD_LINUX: dnf install -y epel-release && dnf install -y swig gcc gcc-c++ openbabel-devel
           CIBW_REPAIR_WHEEL_COMMAND_LINUX: >
-            python patch_auditwheel_whitelist.py &&
             auditwheel repair -w {dest_dir} {wheel}
 
       - run: |
