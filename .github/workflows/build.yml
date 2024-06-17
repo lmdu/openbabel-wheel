@@ -17,6 +17,13 @@ jobs:
         with:
           python-version: '3.10'
 
+      - name: patch auditwheel
+        if: runner.os == 'Linux'
+        run: |
+          which python
+          auditwheel --version
+          python patch_auditwheel_whitelist.py
+
       - name: Download openbabel
         run: |
           which python
@@ -41,7 +48,7 @@ jobs:
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux_2_28
           CIBW_BEFORE_BUILD_MACOS: brew reinstall open-babel
           CIBW_BEFORE_BUILD_LINUX: dnf install -y epel-release && dnf install -y swig gcc gcc-c++ openbabel-devel
-          CIBW_REPAIR_WHEEL_COMMAND_LINUX: which python && pip --version && which auditwheel && auditwheel --version
+          #CIBW_REPAIR_WHEEL_COMMAND_LINUX: which python && pip --version && which auditwheel && auditwheel --version
 
       - run: |
           ls -l wheelhouse
