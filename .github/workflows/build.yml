@@ -41,7 +41,7 @@ jobs:
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux_2_28
           CIBW_BEFORE_BUILD_MACOS: brew reinstall open-babel
           CIBW_BEFORE_BUILD_LINUX: dnf install -y epel-release && dnf install -y swig gcc gcc-c++ openbabel-devel
-          CIBW_REPAIR_WHEEL_COMMAND_LINUX: pipx run patch_auditwheel_whitelist.py && auditwheel repair -w {dest_dir} {wheel}
+          CIBW_REPAIR_WHEEL_COMMAND_LINUX: python patch_auditwheel_policy.py && auditwheel repair -w {dest_dir} {wheel}
 
       - run: |
           ls -l wheelhouse
