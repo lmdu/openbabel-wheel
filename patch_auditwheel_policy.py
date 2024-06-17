@@ -9,4 +9,4 @@ for p in policies:
     p['lib_whitelist'].append('libxcb.so.1')
 
 with open(policy_file, 'w') as fw:
-    json.dump(policies, fh)
+    json.dump(policies, fw)
