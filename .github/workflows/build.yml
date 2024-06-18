@@ -33,8 +33,8 @@ jobs:
       - name: Build Wheels
         uses: pypa/cibuildwheel@v2.19.0
         env:
-          CIBW_BUILD_VERBOSITY: 2
-          CIBW_BUILD: cp38-manylinux_x86_64
+          CIBW_BUILD_VERBOSITY: 1
+          #CIBW_BUILD: cp38-manylinux_x86_64
           CIBW_SKIP: pp* *musllinux*
           CIBW_ARCHS_LINUX: x86_64
           CIBW_ARCHS_MACOS: x86_64
